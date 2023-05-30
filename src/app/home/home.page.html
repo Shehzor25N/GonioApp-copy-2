@@ -1,0 +1,135 @@
+<ion-header mode="ios" translucent="true">
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon name="walk-outline"></ion-icon> GaitTracker
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-card class="control-card">
+    <ion-card-header class="control-card-header">
+      <ion-card-title>Control</ion-card-title>
+      <ion-card-subtitle>Measurement</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content class="control-card-content">
+      <div class="button-container inline-buttons">
+        <ion-button id = "start" class="animated-button start-button" (click)="motorOn()" expand="block">
+          <ion-toast mode = "ios" trigger="start" message="Starting Measurements...." [duration]="3000" icon="play-outline"></ion-toast>
+          <ion-icon name="play"></ion-icon>
+          Start
+        </ion-button>
+        <ion-button  id="stop" class="animated-button stop-button" (click)="motorOff()" expand="block">
+          <ion-toast mode = "ios" trigger="stop" message="Stopping Measurements...." [duration]="3000" icon="stop-circle-outline"></ion-toast>
+          <ion-icon name="stop"></ion-icon>
+          Stop
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  
+  
+
+  <ion-card class="gait-phase-card">
+    <ion-card-header>
+      <ion-card-title >Gait Phase</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+        <ion-badge class="angle-badge">{{gaitPhase}}</ion-badge>
+      </ion-row>
+    </ion-card-content>
+    <ion-button expand="block" class="record-button">Record</ion-button>
+    <ion-loading message="Starting Charting..." [duration]="3000" spinner="circles"></ion-loading>
+  </ion-card>
+
+  <ion-grid >
+    <ion-row>
+      <ion-col size="6">
+        <ion-card class="leg-card">
+          <ion-card-header>
+            <ion-card-title>Right Leg</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list >
+              <ion-item>
+                <ion-label>Knee Angle</ion-label>
+                <ion-badge class="angle-badge">{{kneeAngle}}</ion-badge>
+              </ion-item>
+              <ion-item>
+                <ion-label>Knee Joint Angle</ion-label>
+                <ion-badge class="angle-badge">{{kneeJointAngle}}</ion-badge>
+              </ion-item>
+              <ion-item>
+                <ion-label>Ankle Angle</ion-label>
+                <ion-badge class="angle-badge">{{ankleAngle}}</ion-badge>
+              </ion-item>
+              <ion-item>
+                <ion-label>Hip Angle</ion-label>
+                <ion-badge class="angle-badge">{{hipAngle}}</ion-badge>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card class="leg-card">
+          <ion-card-header>
+            <ion-card-title>Left Leg</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>Knee Angle</ion-label>
+                <ion-badge class="angle-badge">{{kneeAngle}}</ion-badge>
+              </ion-item>
+              <ion-item>
+                <ion-label>Knee Joint Angle</ion-label>
+                <ion-badge class="angle-badge">{{kneeJointAngle}}</ion-badge>
+              </ion-item>
+              <ion-item>
+                <ion-label>Ankle Angle</ion-label>
+                <ion-badge class="angle-badge">{{ankleAngle}}</ion-badge>
+              </ion-item>
+              <ion-item>
+                <ion-label>Hip Angle</ion-label>
+                <ion-badge class="angle-badge">{{hipAngle}}</ion-badge>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card class="activity-card">
+    <ion-card-header>
+      <ion-card-title>Activity</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          Walking Speed: {{walkingSpeed}} m/s
+        </ion-item>
+        <ion-item>
+          Activity Level: {{activityLevel}}
+        </ion-item>
+        <ion-item>
+          Total Distance: {{totalDistance}} m
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+    <ion-button id="open-toast" expand="block" (click)="resetDistance()">Reset</ion-button>
+    <ion-toast mode = "ios" trigger="open-toast" message="Resetting Total Distance...." [duration]="3000" icon = "refresh-outline"></ion-toast>
+  </ion-card>
+
+
+  <ion-card class="gait-cycle-chart-card">
+    <ion-card-header>
+      <ion-card-title>Gait Cycle Chart</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas id="lineCanvas"></canvas>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "GonioApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
